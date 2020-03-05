@@ -31,6 +31,8 @@ api["restaurants"].each do |a|
     name: a["restaurant"]["name"],
     zomato_rest_id: a["restaurant"]["id"],
     address: a["restaurant"]["location"]["address"],
+    latitude: a["restaurant"]["location"]["latitude"],
+    longitude: a["restaurant"]["location"]["longitude"],
     rating: a["restaurant"]["user_rating"]["aggregate_rating"].to_f,
     price_range: a["restaurant"]["price_range"],
     image: a["restaurant"]["photos"][0]["photo"]["url"],
