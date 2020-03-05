@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, except: %i[index new create]
   root to: 'pages#home'
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
