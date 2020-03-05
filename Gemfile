@@ -35,3 +35,7 @@ gem 'algoliasearch-rails'
 gem 'geocoder'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+# Env file
+gem 'dotenv-rails', groups: [:development, :test]
+# Cloudinary
+gem 'cloudinary', '~> 1.12.0'
