@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_204546) do
+ActiveRecord::Schema.define(version: 2020_03_05_153713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_204546) do
     t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "zomato_rest_id"
     t.index ["category_id"], name: "index_restaurants_on_category_id"
   end
 
