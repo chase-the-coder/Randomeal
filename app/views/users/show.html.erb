@@ -1,1 +1,2 @@
 <div class="container"> hello! <%= @user.first_name %></div>
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
