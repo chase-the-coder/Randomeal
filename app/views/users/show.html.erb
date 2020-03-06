@@ -1,3 +1,7 @@
 <div class="container"> hello! <%= @user.first_name %></div>
-<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+<% if current_user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+  <%= image_tag "https://secure.gravatar.com/avatar/22be82d304e6900e27d379afe52142e9?s=600&d=mm&r=g", height: 300, width: 400, crop: :fill %>
+<% end %>
 <%= link_to "Edit", edit_user_path(@user), class: 'btn btn-danger' %>
