@@ -1,11 +1,11 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-randomeal">
   <% if user_signed_in? %>
     <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <%= cl_image_tag current_user.photo.key, crop: :fill, :class => "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
     </button>
   <% else %>
-    <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <%= image_tag '../assets/images/randomeal.png' %>
+    <button class="navbar-toggler navbar-brand" style="border: 0;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <%= image_tag 'randomeal-logo.png' %>
     </button>
   <% end %>
 
