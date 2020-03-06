@@ -1,20 +1,46 @@
-<div class="iphone style-1">
-    <div class="iphone__item">#1</div>
-    <div class="iphone__power-btn"></div>
-    <div class="iphone__left-btn"></div>
-    <div class="iphone__details"></div>
-    <div class="iphone__screen">
-      <a href="#" class="nav__trigger"><span class="nav__icon"></span></a>
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">About Us</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">Portfolio</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">Blog</a></li>
-          <li class="nav__item"><a class="nav__link" href="#">Contact Us</a></li>
-        </ul>
-      </nav>
-      <div class="iphone__content"></div>
-    </div>
-    <div class="iphone__home-btn"></div>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <% if user_signed_in? %>
+    <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <%= cl_image_tag current_user.photo.key, crop: :fill, :class => "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    </button>
+  <% else %>
+    <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <%= image_tag '../assets/images/randomeal.png' %>
+    </button>
+  <% end %>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Randomize", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
