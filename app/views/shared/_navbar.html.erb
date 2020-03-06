@@ -1,7 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-randomeal">
   <% if user_signed_in? %>
-    <button class="navbar-toggler navbar-brand" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <%= cl_image_tag current_user.photo.key, crop: :fill, :class => "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <button class="navbar-toggler navbar-brand" style="border: 0;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, crop: :fill, :class => "avatar" %>
+      <% else %>
+        <%= image_tag "https://secure.gravatar.com/avatar/22be82d304e6900e27d379afe52142e9?s=600&d=mm&r=g", crop: :fill, :class => "avatar" %>
+      <% end %>
     </button>
   <% else %>
     <button class="navbar-toggler navbar-brand" style="border: 0;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
