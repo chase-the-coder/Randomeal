@@ -1,0 +1,10 @@
+<div class="w-50 m-auto">
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :photo, as: :file %>
+    <%= f.button :submit, 'Save', class: 'btn btn-danger' %>
+    <%= link_to "back", user_path(@user), class: "btn btn-ouline-dark" %>
+  <% end %>
+</div>
