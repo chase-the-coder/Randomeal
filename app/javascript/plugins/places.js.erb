@@ -1,0 +1,13 @@
+const algoliaSearch = () => {
+  const addressInput = document.getElementById("address-input")
+  if (addressInput) {
+    var places = require('places.js');
+    var placesAutocomplete = places({
+      appId: '<%= ENV["ALGOLIA_API_ID"] %>',
+      apiKey: '<%= ENV["ALGOLIA_USER_ID"] %>',
+      container: document.querySelector('#address-input')
+    });
+  }
+};
+
+export { algoliaSearch }

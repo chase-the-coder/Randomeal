@@ -1,3 +1,28 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= form_tag root_path, method: "GET" do |f| %>
+  <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
+  <%= submit_tag "submit" %>
+<% end %>
+
+<%= form_with url: root_path, method: "GET", remote: true, id: "hidden_form" do |f| %>
+  <%= text_field_tag :latitude, nil, id: "lat", class: "hidden" %>
+  <%= text_field_tag :longitude, nil, id: "long", class: "hidden" %>
+  <%= submit_tag "submit", class: "hidden" %>
+<% end %>
+
+<script>
+  function success(position) {
+    const hiddenForm = document.getElementById("hidden_form");
+
+    document.getElementById("lat").value = position.coords.latitude;
+    document.getElementById("long").value = position.coords.longitude;
+
+    Rails.fire(hiddenForm, 'submit');
+  }
+
+  <% unless params[:latitude].present? %>
+    navigator.geolocation.getCurrentPosition(success);
+  <% end %>
+
+
+</script>
 
