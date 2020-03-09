@@ -12,15 +12,15 @@
   flex-grow: 1;
 }
 
-.card-grow {
+.category-grow {
   transition: all .2s ease-in-out;
 }
 
-.card-grow:hover {
+.category-grow:hover {
 transform: scale(1.02);
 }
 
-.card {
+.category {
   background-size: cover;
   background-position: center;
   height: 50px;
