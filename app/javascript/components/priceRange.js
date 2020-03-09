@@ -1,8 +1,12 @@
 const selectPrice = () => {
-  const priceId = `price${event.currentTarget.innerHTML.length}`;
-  document.getElementById(priceId).classList.toggle("selected");
+  event.currentTarget.classList.toggle("selected");
+
+  document.querySelectorAll(".selected").forEach((element) => {
+    elem = document.getElementById("price-hidden").innerHTML;
+    elem = elem + element.innerHTML;
+  });
 };
 
-[price1, price2, price3, price4, price5].forEach((element) => {
+document.querySelectorAll(".price-range").forEach((element) => {
   element.addEventListener("click", selectPrice);
 });
