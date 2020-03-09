@@ -1,0 +1,45 @@
+#categories-div {
+  background-color: $randomeal-primary;
+  border-radius: 6px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
+  /*margin: 16px;*/
+  flex-grow: 1;
+}
+
+.card-grow {
+  transition: all .2s ease-in-out;
+}
+
+.card-grow:hover {
+transform: scale(1.02);
+}
+
+.card {
+  background-size: cover;
+  background-position: center;
+  height: 50px;
+  border-radius: 4px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 22px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.categories-grid a {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  opacity: 0.4;
+}
