@@ -1,13 +1,8 @@
-const slider = () => {
-  var sliderObject = document.getElementById('slider');
-  console.log('teste')
-  noUiSlider.create(sliderObject, {
-      start: [20, 80],
-      connect: true,
-      range: {
-          'min': 0,
-          'max': 100
-      }
-  });
-};
-export { slider };
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}

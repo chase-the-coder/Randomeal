@@ -1,7 +1,7 @@
 import "bootstrap";
 import "components/navbar";
 import "nouislider";
-import { slider } from "../components/slider.js";
+import "components/slider";
 import { algoliaSearch } from "../plugins/places.js.erb";
 slider();
 algoliaSearch();
