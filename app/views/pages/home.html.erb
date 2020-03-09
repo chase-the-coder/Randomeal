@@ -2,7 +2,7 @@
 
 <%= form_tag root_path, method: "GET" do |f| %>
   <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
-  <%= submit_tag "submit" %>
+  <%= submit_tag "submit",class: "hidden" %>
 <% end %>
 
 <%= form_with url: root_path, method: "GET", remote: true, id: "hidden_form" do |f| %>
@@ -11,12 +11,13 @@
   <%= submit_tag "submit", class: "hidden" %>
 <% end %>
 
-
 <div class="slidecontainer">
   <h5>Distance Radius: <span id="demo"></span> km</h5>
   <input type="range" min="1" max="30" value="15" class="slider" id="myRange">
 </div>
 
+
+<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
 
 <script>
   function success(position) {
