@@ -1,3 +1,5 @@
+<h5>Your location:</h5>
+
 <%= form_tag root_path, method: "GET" do |f| %>
   <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
   <%= submit_tag "submit" %>
@@ -8,6 +10,13 @@
   <%= text_field_tag :longitude, nil, id: "long", class: "hidden" %>
   <%= submit_tag "submit", class: "hidden" %>
 <% end %>
+
+
+<div class="slidecontainer">
+  <h5>Distance Radius: <span id="demo"></span> km</h5>
+  <input type="range" min="1" max="30" value="15" class="slider" id="myRange">
+</div>
+
 
 <script>
   function success(position) {
@@ -22,15 +31,4 @@
   <% unless params[:latitude].present? %>
     navigator.geolocation.getCurrentPosition(success);
   <% end %>
-
-
-</script>
-
-<div class="slidecontainer">
-  <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
-</div>
-<p id="slider-value" ></p>
-<script>
-  sliderValue = document.getElementById("myRange").value;
-  document.getElementById("slider-value").innerText = `Distance: ${sliderValue}`
 </script>
