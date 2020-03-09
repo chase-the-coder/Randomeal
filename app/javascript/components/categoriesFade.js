@@ -1,4 +1,4 @@
-cards = document.querySelectorAll(".card")
+cards = document.querySelectorAll(".category")
 const select = () => {
   event.currentTarget.classList.toggle("active")
 };
