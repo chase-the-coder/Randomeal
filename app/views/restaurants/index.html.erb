@@ -1,26 +1,33 @@
-<% restaurant = @restaurants.sample %>
+<% unless @restaurants == [] %>
+  <% restaurant = @restaurants.sample %>
 
-<div class="card" >
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
-  <div class="card-body">
-    <h5 class="card-title"><%= restaurant.name %></h5>
-    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= restaurant.category.name %></li>
-    <li class="list-group-item">
-      <% restaurant.timings.split(",").each do |time| %>
-        <%= time %> <br>
+  <div class="card" >
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+      <h5 class="card-title"><%= restaurant.name %></h5>
+      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= restaurant.category.name %></li>
+      <li class="list-group-item">
+        <% restaurant.timings.split(",").each do |time| %>
+          <%= time %> <br>
+        <% end %>
+      </li>
+      <% price = "" %>
+      <% restaurant.price_range.to_i.times do %>
+        <% price += "$ " %>
       <% end %>
-    </li>
-    <% price = "" %>
-    <% restaurant.price_range.to_i.times do %>
-      <% price += "$ " %>
-    <% end %>
-    <li class="list-group-item"><%= price %></li>
-  </ul>
-  <div class="card-body">
-    <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{restaurant.address}", target: "_blank" %>
+      <li class="list-group-item"><%= price %></li>
+    </ul>
+    <div class="card-body">
+      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{restaurant.address}", target: "_blank" %>
+    </div>
   </div>
-</div>
-<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+
+
+  <%= link_to "Randomize", restaurants_path(restaurants: {price: params[:restaurants][:price], categories: params[:restaurants][:categories]}), class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<% else %>
+  <h2>No restaurants match search criteria.</h2>
+  <%= link_to "Back", root_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<% end %>
