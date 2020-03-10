@@ -25,4 +25,4 @@
 </div>
 
 
-<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<%= link_to "Randomize", restaurants_path(restaurants: {price: params[:restaurants][:price]}), class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>

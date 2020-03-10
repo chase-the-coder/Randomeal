@@ -52,16 +52,15 @@
 </div>
 
 <div class="btn-group mt-3" role="group" aria-label="Basic example">
-  <p class="py-1 px-2 price-range">$</p>
-  <p class="py-1 px-2 price-range">$$</p>
-  <p class="py-1 px-2 price-range">$$$</p>
-  <p class="py-1 px-2 price-range">$$$$</p>
-  <p class="py-1 px-2 price-range">$$$$$</p>
+  <p class="py-1 px-3 price-range">$</p>
+  <p class="py-1 px-3 price-range">$$</p>
+  <p class="py-1 px-3 price-range">$$$</p>
+  <p class="py-1 px-3 price-range">$$$$</p>
 </div>
 
-<%= form_with url: restaurants_path, remote: false, method: "GET" do |f| %>
-  <%= text_field_tag :price, nil, id: "price-hidden", class: "hidden" %>
-  <%= f.submit "Randomize", class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<%= simple_form_for(:restaurants, method: :GET, url: restaurants_path) do |f| %>
+  <%= f.input :price, as: :string, input_html: {class: "hidden", id: "price-hidden"}, label: false %>
+  <%= f.button :submit, "Randomize", class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
 <% end %>
 
 <script>

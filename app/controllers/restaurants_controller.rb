@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = Restaurant.all
+    prices = params[:restaurants][:price].split(",")
+    @restaurants = Restaurant.where(price_range: prices)
   end
 end
