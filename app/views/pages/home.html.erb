@@ -1,4 +1,6 @@
-<h5>Your location:</h5>
+<h1 class="main-header">Randomeal</h1>
+
+<p class="feature-header">Your location:</p>
 
 <%= form_tag root_path, method: "GET" do |f| %>
   <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
@@ -12,11 +14,11 @@
 <% end %>
 
 <div class="slidecontainer">
-  <h5>Distance Radius: <span id="demo"></span> km</h5>
+  <p class="feature-header">Distance Radius: <span id="demo"></span> km</p>
   <input type="range" min="1" max="30" value="15" class="slider" id="myRange">
 </div>
 
-<h5 class="feature-header">In the mood for:</h5>
+<p class="feature-header">In the mood for:</p>
 <button class="btn btn-primary" id="button-randomeal" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   Toggle Categories
 </button>
@@ -51,7 +53,7 @@
   </div>
 </div>
 
-<h5 class="feature-header">Price Range:</h5>
+<p class="feature-header">Price Range:</p>
 <div class="btn-group" role="group" aria-label="Basic example">
   <p id="price1" class="btn price-range">$</p>
   <p id="price2" class="btn price-range">$$</p>
@@ -60,7 +62,7 @@
   <p id="price5" class="btn price-range">$$$$$</p>
 </div>
 
-<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-3", id: "randomize-btn" %>
 
 <script>
   function success(position) {

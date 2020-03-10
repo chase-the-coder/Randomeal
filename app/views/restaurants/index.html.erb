@@ -1,3 +1,5 @@
+<%= link_to "Go back", root_path, class: "btn btn-outline-secondary mb-2 text-left" %>
+
 <% restaurant = @restaurants.sample %>
 
 <div class="card" >
@@ -7,8 +9,9 @@
     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= restaurant.category.name %></li>
+    <li class="list-group-item">Type of Food: <%= restaurant.category.name %></li>
     <li class="list-group-item">
+      Availability:
       <% restaurant.timings.split(",").each do |time| %>
         <%= time %> <br>
       <% end %>
@@ -17,10 +20,10 @@
     <% restaurant.price_range.to_i.times do %>
       <% price += "$ " %>
     <% end %>
-    <li class="list-group-item"><%= price %></li>
+    <li class="list-group-item">Price Range: <%= price %></li>
   </ul>
   <div class="card-body">
     <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{restaurant.address}", target: "_blank" %>
   </div>
 </div>
-<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+<%= link_to "Randomize", restaurants_path, class: "btn btn-lg mt-3", id: "randomize-btn" %>
