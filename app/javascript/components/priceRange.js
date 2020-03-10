@@ -1,8 +1,20 @@
 const selectPrice = () => {
-  const priceId = `price${event.currentTarget.innerHTML.length}`;
-  document.getElementById(priceId).classList.toggle("selected");
+  event.currentTarget.classList.toggle("selected");
+
+  const priceRanges = [];
+  const priceInput = document.getElementById("price-hidden");
+
+  document.querySelectorAll(".selected").forEach((element) => {
+    priceRanges.push(element.innerHTML.length);
+  });
+
+  if (priceRanges.length == 0) {
+    priceInput.value = "";
+  } else {
+    priceInput.value = priceRanges.join(",");
+  }
 };
 
-[price1, price2, price3, price4, price5].forEach((element) => {
+document.querySelectorAll(".price-range").forEach((element) => {
   element.addEventListener("click", selectPrice);
 });
