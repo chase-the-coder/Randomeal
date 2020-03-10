@@ -8,6 +8,13 @@
     <h5 class="card-title"><%= restaurant.name %></h5>
     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
   </div>
+  <div
+    id="map"
+    style="width: 90%;
+    height: 120px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Type of Food: <%= restaurant.category.name %></li>
     <li class="list-group-item">
