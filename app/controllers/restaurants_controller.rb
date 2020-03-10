@@ -5,7 +5,15 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    prices = params[:restaurants][:price].split(",")
-    @restaurants = Restaurant.where(price_range: prices)
+    @restaurants = Restaurant.all
+    if params[:restaurants][:price] != ""
+      prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
+      @restaurants -= Restaurant.where(price_range: prices)
+    end
+    if params[:restaurants][:categories] != ""
+      categories = params[:restaurants][:categories].split(",")
+      categories_instances = Category.where(name: categories)
+      @restaurants -= Restaurant.where(category_id: categories_instances)
+    end
   end
 end
