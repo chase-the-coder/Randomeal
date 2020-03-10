@@ -4,7 +4,8 @@
   align-content: center;
   margin: auto;
   margin-top: 20px;
-  padding: auto;
+  padding-left: 10px;
+  padding-right: 10px;
   // display: flex;
 }
 
@@ -34,4 +35,10 @@
 
 .feature-header {
   margin-top: 20px;
+  font-size: 20px;
+}
+
+.main-header {
+  color: $randomeal-primary;
+  font-weight: bolder;
 }
