@@ -22,7 +22,10 @@
       <% end %>
       <li class="list-group-item">Price Range: <%= price %></li>
     </ul>
-    <div align="center" class="m-4">
+    <div class="card-body">
+      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank" %>
+    </div>
+    <div align="center" class="mb-4">
       <div
         id="map"
         style="width: 90%;
@@ -30,9 +33,6 @@
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-    </div>
-    <div class="card-body">
-      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank" %>
     </div>
   </div>
   <%= link_to "Randomize", restaurants_path(restaurants: {price: params[:restaurants][:price], categories: params[:restaurants][:categories]}), class: "btn btn-lg mt-3", id: "randomize-btn" %>
