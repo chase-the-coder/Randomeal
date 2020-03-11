@@ -16,7 +16,10 @@
   display: none;
 }
 
-
+body {
+  background: linear-gradient(155deg, rgba(255,69,90,1) 0%, rgba(252,160,59,1) 43%, rgba(244,244,244,1) 72%);
+  height: 100vh;
+}
 
 // .categories-cards {
 //   display: grid;
