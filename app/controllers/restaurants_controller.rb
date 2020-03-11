@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
 
   def index
     location = [params[:restaurants][:user_lat].to_f, params[:restaurants][:user_long].to_f]
-    create_rest(scrape(location))
+    CreateRestaurantsJob.perform_later(scrape(location))
     @restaurants = Restaurant.where.not(latitude: nil, longitude: nil)
     if params[:restaurants][:price] != ""
       prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
@@ -85,25 +85,5 @@ class RestaurantsController < ApplicationController
       start += 30
     end
     hash
-  end
-
-  def create_rest(rests)
-    Restaurant.delete_all
-    rests.each do |key, _value|
-      rests[key]["category"].split(",").each do |category|
-        Category.find_or_create_by(name: category)
-      end
-    end
-
-    rests.each do |key, _value|
-      Restaurant.create!(
-        name: rests[key]["name"],
-        address: rests[key]["address"],
-        rating: rests[key]["rating"],
-        price_range: rests[key]["price"],
-        image: rests[key]["photo"],
-        category_id: Category.find_by(name: rests[key]["category"].split(",")[0]).id
-      )
-    end
   end
 end
