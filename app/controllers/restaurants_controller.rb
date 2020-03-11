@@ -15,15 +15,15 @@ class RestaurantsController < ApplicationController
       prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
       @restaurants -= Restaurant.where(price_range: prices)
     end
-    if params[:restaurants][:distance] != ""
-      @restaurants.reject do |rest|
-        rest.distance_to([location[0], location[1]]) <= params[:restaurants][:distance].to_i
-      end
-    end
     if params[:restaurants][:categories] != ""
       categories = params[:restaurants][:categories].split(",")
       categories_instances = Category.where(name: categories)
       @restaurants -= Restaurant.where(category_id: categories_instances)
+    end
+    if params[:restaurants][:distance] != ""
+      @restaurants.reject do |rest|
+        rest.distance_to([location[0], location[1]]) <= params[:restaurants][:distance].to_i
+      end
     end
     @restaurant = @restaurants.sample
 
@@ -88,22 +88,22 @@ class RestaurantsController < ApplicationController
   end
 
   def create_rest(rests)
-    Restaurant.destroy_all
+    Restaurant.delete_all
     rests.each do |key, _value|
       rests[key]["category"].split(",").each do |category|
-        Category.create!(name: category)
+        Category.find_or_create_by(name: category)
       end
     end
 
     rests.each do |key, _value|
-    Restaurant.create!(
-      name: rests[key]["name"],
-      address: rests[key]["address"],
-      rating: rests[key]["rating"],
-      price_range: rests[key]["price"],
-      image: rests[key]["photo"],
-      category_id: Category.find_by(name: rests[key]["category"].split(",")[0]).id
-    )
+      Restaurant.create!(
+        name: rests[key]["name"],
+        address: rests[key]["address"],
+        rating: rests[key]["rating"],
+        price_range: rests[key]["price"],
+        image: rests[key]["photo"],
+        category_id: Category.find_by(name: rests[key]["category"].split(",")[0]).id
+      )
     end
   end
 end
