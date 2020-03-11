@@ -1,2 +1,9 @@
-<h1>Pages#contact</h1>
-<p>Find me in app/views/pages/contact.html.erb</p>
+<h1>Contact Us</h1>
+
+<p>Please leave your details and query below and we'll get back to you as soon as possible...</p>
+
+  <%= simple_form_for :form do |f| %>
+    <%= f.input :email %>
+    <%= f.input :comments %>
+    <%= link_to 'submit', root_path, class: 'btn', style: "background-color: #F3613A; color: white"%>
+  <% end %>
