@@ -8,8 +8,6 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    location = [params[:restaurants][:user_lat].to_f, params[:restaurants][:user_long].to_f]
-    CreateRestaurantsJob.perform_later(scrape(location))
     @restaurants = Restaurant.where.not(latitude: nil, longitude: nil)
     if params[:restaurants][:price] != ""
       prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
@@ -32,7 +30,30 @@ class RestaurantsController < ApplicationController
       lng: @restaurant.longitude,
       infoWindow: render_to_string(partial: "info_window", locals: { restaurant: @restaurant })
     }
+  end
 
+  def load
+    location = [params[:restaurants][:user_lat].to_f, params[:restaurants][:user_long].to_f]
+    CreateRestaurantsJob.perform_later(scrape(location))
+  end
+
+  def check_result
+    @restaurants = Restaurant.all
+    if params[:restaurants][:price] != ""
+      prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
+      @restaurants -= Restaurant.where(price_range: prices)
+    end
+    if params[:restaurants][:categories] != ""
+      categories = params[:restaurants][:categories].split(",")
+      categories_instances = Category.where(name: categories)
+      @restaurants -= Restaurant.where(category_id: categories_instances)
+    end
+    if params[:restaurants][:distance] != ""
+      @restaurants.reject do |rest|
+        rest.distance_to([location[0], location[1]]) <= params[:restaurants][:distance].to_i
+      end
+    end
+    @restaurant = @restaurants.sample
   end
 
   private
@@ -86,4 +107,5 @@ class RestaurantsController < ApplicationController
     end
     hash
   end
+
 end
