@@ -8,10 +8,10 @@ const buildMap = () => {
   });
 };
 const addMarkersToMap = (map, markers) => {
-  // const popup = new mapboxgl.Popup().setHTML(markers.infoWindow);
+  const popup = new mapboxgl.Popup().setHTML(markers.infoWindow);
   new mapboxgl.Marker()
     .setLngLat([ markers.lng, markers.lat ])
-    // .setPopup(popup)
+    .setPopup(popup)
     .addTo(map);
 };
 const fitMapToMarkers = (map, markers) => {
