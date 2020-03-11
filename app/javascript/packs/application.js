@@ -4,6 +4,7 @@ import "nouislider";
 import "components/slider";
 import "components/priceRange";
 import "components/categoriesFade";
+import "components/distance";
 import { algoliaSearch } from "../plugins/places.js.erb";
 algoliaSearch();
 

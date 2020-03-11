@@ -15,6 +15,11 @@ class RestaurantsController < ApplicationController
       prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
       @restaurants -= Restaurant.where(price_range: prices)
     end
+    if params[:restaurants][:distance] != ""
+      @restaurants.reject do |rest|
+        rest.distance_to([location[0], location[1]]) <= params[:restaurants][:distance].to_i
+      end
+    end
     if params[:restaurants][:categories] != ""
       categories = params[:restaurants][:categories].split(",")
       categories_instances = Category.where(name: categories)
