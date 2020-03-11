@@ -10,12 +10,6 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Type of Food: <%= @restaurant.category.name %></li>
-      <li class="list-group-item">
-        Availability:
-        <% @restaurant.timings.split(",").each do |time| %>
-          <%= time %> <br>
-        <% end %>
-      </li>
       <% price = "" %>
       <% @restaurant.price_range.to_i.times do %>
         <% price += "$ " %>

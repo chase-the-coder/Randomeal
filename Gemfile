@@ -28,14 +28,14 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-
-gem 'autoprefixer-rails'
 gem 'pundit'
 gem 'algoliasearch-rails'
 gem 'geocoder'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 # Env file
 gem 'dotenv-rails', groups: [:development, :test]
 # Cloudinary
 gem 'cloudinary', '~> 1.12.0'
+# Sidekiq for background jobs
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'

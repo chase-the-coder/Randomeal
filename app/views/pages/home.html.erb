@@ -56,15 +56,18 @@
 
 <p class="feature-header">Price Range:</p>
 <div class="btn-group" role="group" aria-label="Basic example">
-  <p id="price1" class="btn price-range py-2 px-3">$</p>
-  <p id="price2" class="btn price-range py-2 px-3">$$</p>
-  <p id="price3" class="btn price-range py-2 px-3">$$$</p>
-  <p id="price4" class="btn price-range py-2 px-3">$$$$</p>
+  <p id="price1" class="price-range py-2 px-3">$</p>
+  <p id="price2" class="price-range py-2 px-3">$$</p>
+  <p id="price3" class="price-range py-2 px-3">$$$</p>
+  <p id="price4" class="price-range py-2 px-3">$$$$</p>
 </div>
 
 <%= simple_form_for(:restaurants, method: :GET, url: restaurants_path) do |f| %>
   <%= f.input :categories, as: :string, input_html: {class: "hidden", id: "category-hidden"}, label: false %>
   <%= f.input :price, as: :string, input_html: {class: "hidden", id: "price-hidden"}, label: false %>
+  <%= f.input :user_lat, as: :string, input_html: {class: "hidden", id: "user_lat"}, label: false %>
+  <%= f.input :user_long, as: :string, input_html: {class: "hidden", id: "user_long"}, label: false %>
+  <%= f.input :distance, as: :string, input_html: {class: "hidden", id: "distance"}, label: false %>
   <%= f.button :submit, "Randomize", class: "btn btn-lg mt-3", id: "randomize-btn" %>
 <% end %>
 
@@ -73,7 +76,9 @@
     const hiddenForm = document.getElementById("hidden_form");
 
     document.getElementById("lat").value = position.coords.latitude;
+    document.getElementById("user_lat").value = position.coords.latitude;
     document.getElementById("long").value = position.coords.longitude;
+    document.getElementById("user_long").value = position.coords.longitude;
 
     Rails.fire(hiddenForm, 'submit');
   }
