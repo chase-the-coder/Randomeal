@@ -1,7 +1,7 @@
 class CreateRestaurantsJob < ApplicationJob
   queue_as :default
 
-  def perform(rest)
+  def perform(rests)
     Restaurant.delete_all
     rests.each do |key, _value|
       rests[key]["category"].split(",").each do |category|
