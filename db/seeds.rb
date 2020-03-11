@@ -33,7 +33,6 @@ api["restaurants"].each do |a|
     address: a["restaurant"]["location"]["address"],
     rating: a["restaurant"]["user_rating"]["aggregate_rating"].to_f,
     price_range: a["restaurant"]["price_range"],
-    timings: a["restaurant"]["timings"],
     image: image,
     category_id: Category.find_by(name: a["restaurant"]["cuisines"].split(",")[0]).id
     )
