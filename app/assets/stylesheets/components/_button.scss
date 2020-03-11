@@ -1,8 +1,29 @@
-#button-randomeal {
+#btn-randomeal {
   border-radius: 35px;
   background: transparent;
   border-color: $randomeal-primary;
   color: $randomeal-primary;
+}
+
+#btn-randomeal-cat {
+  border-radius: 35px;
+  background: white;
+  border-color: $light-gray;
+  color: $black;
+  border: solid 1px #CCCCCC;
+  outline: none;
+  z-index: 1;
+}
+
+#btn-randomeal-cat-pressed {
+  border-radius: 35px;
+  background: white;
+  border-color: $randomeal-primary;
+  color: $randomeal-primary;
+  border: solid 1px;
+  border-bottom-color: white;
+  outline: none;
+  z-index: 1;
 }
 
 #randomize-btn {

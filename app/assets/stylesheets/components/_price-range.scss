@@ -1,14 +1,18 @@
 .price-range {
-  -moz-box-shadow: inset 0 0 1px #000000;
-  -webkit-box-shadow: inset 0 0 1px #000000;
-  box-shadow: inset 0 0 1px #000000;
-  color: black;
+  // -moz-box-shadow: inset 0 0 1px #000000;
+  // -webkit-box-shadow: inset 0 0 1px #000000;
+  // box-shadow: inset 0 0 1px #000000;
+  color: $randomeal-primary;
   display: inline-block;
+  border: solid 1px #CCC;
 }
 
 .selected {
-  color: #F3613A;
-  -moz-box-shadow: 1px 1px 1px 1px #ccc;
-  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
-  box-shadow: 1px 1px 1px 1px #ccc;
+  text-color: $randomeal-primary;
+  background-color: $randomeal-secondary;
+  border: none;
+  // -moz-box-shadow: 1px 1px 1px 1px #ccc;
+  // -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  // box-shadow: 1px 1px 1px 1px #ccc;
 }
+
