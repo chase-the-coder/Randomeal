@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
+    location = [params[:restaurants][:user_lat].to_f, params[:restaurants][:user_long].to_f]
     @restaurants = Restaurant.where.not(latitude: nil, longitude: nil)
     if params[:restaurants][:price] != ""
       prices = [1,2,3,4] - params[:restaurants][:price].split(",").map { |price| price.to_i }
