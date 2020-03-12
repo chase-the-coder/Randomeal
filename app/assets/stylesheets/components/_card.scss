@@ -8,3 +8,12 @@
   box-shadow: none !important;
   border: none;
 }
+
+.back-btn {
+  border-radius: 35px;
+  background: white;
+  border-color: $randomeal-primary;
+  color: $randomeal-primary;
+  border: solid 1px;
+  outline: none;
+}

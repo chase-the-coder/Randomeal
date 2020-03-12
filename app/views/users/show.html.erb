@@ -1,7 +1,15 @@
-<div class="container"> hello! <%= @user.first_name %></div>
-<% if current_user.photo.attached? %>
-  <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
-<% else %>
-  <%= image_tag "https://secure.gravatar.com/avatar/22be82d304e6900e27d379afe52142e9?s=600&d=mm&r=g", height: 300, width: 400, crop: :fill %>
-<% end %>
-<%= link_to "Edit", edit_user_path(@user), class: 'btn btn-danger' %>
+<div class="card">
+  <div class="card-body">
+    <div class="text-left">
+      <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
+    </div>
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-large mb-4" %>
+    <% else %>
+      <%= image_tag "https://secure.gravatar.com/avatar/22be82d304e6900e27d379afe52142e9?s=600&d=mm&r=g", height: 300, width: 400, crop: :fill, class: 'avatar-large' %>
+    <% end %>
+     <h5 class="border-top pt-2"><%= @user.first_name %> <%= @user.last_name %></h5>
+     <h5 class="border-top border-bottom pt-2 pb-2"><%= @user.email %></h5>
+    <%= link_to "Edit", edit_user_path(@user), class: 'btn btn-lg mt-3 custom-btn-primary' %>
+  </div>
+</div>

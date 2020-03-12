@@ -14,3 +14,7 @@ $black: #333;
 $randomeal-background: linear-gradient(135deg, rgba(255,69,90,1) 0%, rgba(252,160,59,1) 54%, rgba(244,244,244,1) 79%);
 $randomeal-primary: #ff455a;
 $randomeal-secondary: #fca03b;
+
+.randomeal-secondary {
+  color: $randomeal-secondary;
+}
