@@ -6,9 +6,11 @@
   display: inline-block;
   border: solid 1px;
   border-color: $randomeal-primary;
+  transition: all .2s ease-in-out;
 }
 
 .selected {
+  transition: all .2s ease-in-out;
   color: white;
   background-color: $randomeal-primary;
   border-color: $randomeal-primary;
