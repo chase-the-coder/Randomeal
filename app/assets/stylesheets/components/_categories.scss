@@ -1,3 +1,26 @@
+#btn-randomeal-cat {
+  border-radius: 35px;
+  background: white;
+  border-color: $randomeal-primary;
+  color: $randomeal-primary;
+  border: solid 1px;
+  z-index: 1;
+  box-shadow: none;
+  transition: all .5s ease-in-out;
+}
+
+#btn-randomeal-cat-pressed {
+  border-radius: 35px;
+  background: white;
+  border-color: $randomeal-primary;
+  color: $randomeal-primary;
+  border: solid 1px;
+  border-bottom-color: white;
+  z-index: 1;
+  box-shadow: none;
+  transition: all .5s ease-in-out;
+}
+
 #categories-div {
   border: 1px;
   border-color: $randomeal-primary;
@@ -6,6 +29,7 @@
   border-radius: 6px;
   margin-top: -6px;
   background-color: white;
+  transition: all 1s ease-in-out;
 }
 
 .categories-grid {
