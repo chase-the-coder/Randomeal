@@ -1,4 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-randomeal">
+  <%= link_to "Randomeal", root_path, class: "h2", id: "navbar-header" %>
   <% if user_signed_in? %>
     <button class="navbar-toggler navbar-brand" style="border: 0;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <% if current_user.photo.attached? %>
@@ -9,16 +10,13 @@
     </button>
   <% else %>
     <button class="navbar-toggler navbar-brand" style="border: 0;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <%= image_tag 'randomeal-logo.png' %>
+      <%= image_tag 'randomeal-logo.png', id: "navbar-img" %>
     </button>
   <% end %>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Randomize", root_path, class: "nav-link" %>
-        </li>
         <li class="nav-item">
           <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
         </li>
@@ -32,9 +30,6 @@
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Randomize", root_path, class: "nav-link" %>
-        </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
