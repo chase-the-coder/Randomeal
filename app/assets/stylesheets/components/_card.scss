@@ -17,3 +17,38 @@
   border: solid 1px;
   outline: none;
 }
+
+.card-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header {
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: solid 1px;
+  border-color: #DEE2E6;
+}
+
+.card-text {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: solid 1px;
+  border-color: #DEE2E6;
+  margin: 0;
+}
+
+#go_to {
+  text-decoration: none;
+  color: $randomeal-primary;
+}
+
+.profile-header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: solid 1px;
+  border-top: solid 1px;
+  border-color: #DEE2E6;
+  margin-bottom: 0;
+}
