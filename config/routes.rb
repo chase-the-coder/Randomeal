@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
   get '/load', to: 'restaurants#load'
-  get '/check_result', to: 'restaurants#check_result'
+  get '/verify', to: 'restaurants#verify'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

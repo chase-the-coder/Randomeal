@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="card-btns">
         <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
-        <%= link_to "Try again", restaurants_path(restaurants: {price: params[:restaurants][:price], categories: params[:restaurants][:categories]}), class: "btn mt-0", id: "randomize-btn" %>
+        <%= link_to "Try again", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn mt-0", id: "randomize-btn" %>
       </div>
 
       <h5 class="card-header"><%= @restaurant.name %></h5>
