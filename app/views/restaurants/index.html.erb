@@ -7,6 +7,7 @@
       </div>
 
       <h5 class="card-header"><%= @restaurant.name %></h5>
+      <%= image_tag @restaurant.image, crop: :fill, class: "restaurant-photo" %>
       <p class="card-text"><%= @restaurant.category.name %></p>
         <% price = "" %>
         <% @restaurant.price_range.to_i.times do %>
