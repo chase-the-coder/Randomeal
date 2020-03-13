@@ -6,31 +6,12 @@ class CreateRestaurantsJob < ApplicationJob
   end
 
   def perform(location)
-    rests = scrape(location)
-    rests.each do |key, _value|
-      rests[key]["category"].split(",").each do |category|
-        Category.find_or_create_by(name: category)
-      end
-    end
-
-    rests.each do |key, _value|
-      Restaurant.find_or_create_by(
-        name: rests[key]["name"],
-        address: rests[key]["address"],
-        rating: rests[key]["rating"],
-        price_range: rests[key]["price"],
-        image: rests[key]["photo"],
-        category_id: Category.find_by(name: rests[key]["category"].split(",")[0]).id
-      )
-    end
-  end
-
-  def scrape(location)
     start = 0
     counter = 0
     hash = {}
 
-    2.times do
+    1000.times do
+
 
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
 
@@ -38,6 +19,8 @@ class CreateRestaurantsJob < ApplicationJob
           "From" => "foo@gmail.com",
           "Referer" => "http://www.ruby-lang.org/").read
       html_doc = Nokogiri::HTML(html_file)
+
+      break if html_doc.search("h3").first.text.include?("We're sorry, the page of results you requested is unavailable.")
 
       css_class = "li.lemon--li__373c0__1r9wz > div.lemon--div__373c0__1mboc > div.lemon--div__373c0__1mboc"
 
@@ -52,7 +35,7 @@ class CreateRestaurantsJob < ApplicationJob
         end
 
         element.search('.lemon--p__373c0__3Qnnj .lemon--span__373c0__3997G').each do |el|
-          hash[counter.to_s]["address"] = el.text if el.text.size > 9
+          hash[counter.to_s]["address"] = el.text unless el.text.include?("Miles") ||  el.text.include?("Offers") ||  el.text.include?("more")
         end
 
         element.search('.lemon--span__373c0__3997G .priceRange__373c0__2DY87').each do |el|
@@ -71,9 +54,22 @@ class CreateRestaurantsJob < ApplicationJob
         counter += 1
       end
       start += 30
+    hash.each do |key, _value|
+      hash[key]["category"].split(",").each do |category|
+        Category.find_or_create_by(name: category)
+      end
     end
-    hash
+
+    hash.each do |key, _value|
+      Restaurant.find_or_create_by(
+        name: hash[key]["name"],
+        address: hash[key]["address"],
+        rating: hash[key]["rating"],
+        price_range: hash[key]["price"],
+        image: hash[key]["photo"],
+        category_id: Category.find_by(name: hash[key]["category"].split(",")[0]).id
+      )
+    end
+    end
   end
-
-
 end
