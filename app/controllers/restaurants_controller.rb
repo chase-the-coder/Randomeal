@@ -47,11 +47,11 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
     location = [session[:lat].to_f, session[:long].to_f]
 
-    if session[:price].present?
+    if session[:price] != "a"
       prices = [1,2,3,4] - session[:price].split(",").map { |price| price.to_i }
       @restaurants -= Restaurant.where(price_range: prices)
     end
-    if session[:category].present?
+    if session[:category] != 1
       categories = session[:category].split(",")
       categories_instances = Category.where(name: categories)
       @restaurants -= Restaurant.where(category_id: categories_instances)
