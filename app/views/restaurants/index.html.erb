@@ -14,7 +14,7 @@
         <% end %>
       <p class="card-text border-bottom"><strong><%= price %></strong></p>
     </div>
-      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to" %>
+      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to", class: "btn custom-btn-primary" %>
     <div align="center">
       <div
         id="map"
