@@ -25,7 +25,6 @@
       </div>
     </div>
   </div>
-  <%= link_to "Randomize", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn btn-lg mt-3", id: "randomize-btn" %>
 <% else %>
   <h2>No restaurants match search criteria.</h2>
   <%= link_to "Back", root_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
