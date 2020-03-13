@@ -15,6 +15,3 @@ import { initMapbox } from '../plugins/init_mapbox';
 initMapbox();
 
 import "components/btn-category"
-
-import { loadPageHeader } from "../plugins/loading-type";
-loadPageHeader();
