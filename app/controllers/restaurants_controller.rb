@@ -28,7 +28,6 @@ class RestaurantsController < ApplicationController
     session[:lat] = geocoder_obj["lat"].to_f
     session[:long] = geocoder_obj["lon"].to_f
     session[:distance] = params[:restaurants][:distance]
-    current_session = session
     session[:sidekiq_job_id] = CreateRestaurantsJob.perform_later(location)
   end
 
@@ -63,7 +62,6 @@ class RestaurantsController < ApplicationController
         end
       end
     end
-
     @restaurant = @restaurants.sample
   end
 
