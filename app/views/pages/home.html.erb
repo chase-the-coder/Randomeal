@@ -11,7 +11,7 @@
     <% end %>
 
     <div class="slidecontainer">
-      <p class="feature-header">Distance Radius: <span id="demo"></span> km</p>
+      <p class="feature-header">Distance: <span id="demo"></span> km</p>
       <input type="range" min="1" max="30" value="15" class="slider" id="myRange">
     </div>
 
@@ -49,13 +49,14 @@
       </div>
     </div>
 
-    <p class="feature-header">Price Range:</p>
+    <p class="feature-header">Price:</p>
     <div class="btn-group" role="group" aria-label="Basic example">
       <p id="price1" class="price-range py-2 px-3">$</p>
       <p id="price2" class="price-range py-2 px-3">$$</p>
       <p id="price3" class="price-range py-2 px-3">$$$</p>
       <p id="price4" class="price-range py-2 px-3">$$$$</p>
     </div>
+
 
     <%= simple_form_for(:restaurants, method: :GET, url: load_path) do |f| %>
       <%= f.input :categories, as: :string, input_html: {class: "hidden", id: "category-hidden"}, label: false %>

@@ -1,25 +1,21 @@
 <% unless @restaurants == [] %>
-  <%= link_to "Go back", root_path, class: "btn btn-outline-secondary mb-2 text-left" %>
-
-
   <div class="card" >
-    <!-- <img src="..." class="card-img-top" alt="..."> -->
     <div class="card-body">
-      <h5 class="card-title"><%= @restaurant.name %></h5>
-      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      <div class="card-btns">
+        <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
+        <%= link_to "Try again", restaurants_path(restaurants: {price: params[:restaurants][:price], categories: params[:restaurants][:categories]}), class: "btn mt-0", id: "randomize-btn" %>
+      </div>
+
+      <h5 class="card-header"><%= @restaurant.name %></h5>
+      <p class="card-text"><%= @restaurant.category.name %></p>
+        <% price = "" %>
+        <% @restaurant.price_range.to_i.times do %>
+          <% price += "$ " %>
+        <% end %>
+      <p class="card-text border-bottom"><strong><%= price %></strong></p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Type of Food: <%= @restaurant.category.name %></li>
-      <% price = "" %>
-      <% @restaurant.price_range.to_i.times do %>
-        <% price += "$ " %>
-      <% end %>
-      <li class="list-group-item">Price Range: <%= price %></li>
-    </ul>
-    <div class="card-body">
-      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank" %>
-    </div>
-    <div align="center" class="mb-4">
+      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to" %>
+    <div align="center">
       <div
         id="map"
         style="width: 90%;
@@ -31,7 +27,7 @@
   </div>
   <%= link_to "Randomize", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn btn-lg mt-3", id: "randomize-btn" %>
 <% else %>
-<h2>No restaurants match search criteria.</h2>
-<%= link_to "Back", root_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
+  <h2>No restaurants match search criteria.</h2>
+  <%= link_to "Back", root_path, class: "btn btn-lg mt-5", style: "background-color: #F3613A; color: white" %>
 <% end %>
 
