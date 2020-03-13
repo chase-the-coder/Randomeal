@@ -11,6 +11,12 @@
   color: white;
   border-radius: 35px;
   font-weight: bolder;
+  transition: all .2s ease-in-out;
+}
+
+#randomize-btn:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(0.95);
 }
 
 .custom-btn-primary {
@@ -20,6 +26,7 @@
   color: $randomeal-primary;
   border: solid 1px;
   outline: none;
+  width: 130px;
 }
 
 .custom-btn-secondary {
@@ -30,4 +37,9 @@
   border: solid 1px;
   outline: none;
   width: 56px;
+}
+
+.custom-btn-primary:hover {
+  background-color: $randomeal-primary;
+  color: white;
 }
