@@ -1,6 +1,10 @@
 class CreateRestaurantsJob < ApplicationJob
   queue_as :default
 
+  def expiration
+    @expiration = 60 * 60 * 24 * 30 # 30 days
+  end
+
   def perform(location)
     Restaurant.delete_all
     rests = scrape(location)
@@ -29,7 +33,7 @@ class CreateRestaurantsJob < ApplicationJob
 
     2.times do
 
-      url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
+      url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=-23.768217 -42.565802&start=#{start}"
       p url
       html_file = open(url, "User-Agent" => "Ruby/2.6.5",
           "From" => "foo@gmail.com",
