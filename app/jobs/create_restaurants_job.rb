@@ -15,7 +15,7 @@ class CreateRestaurantsJob < ApplicationJob
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
 
       html_file = open(url, "User-Agent" => "Ruby/2.6.5",
-          "From" => "foo@gmail.com",
+          "From" => "risos@uol.com.br",
           "Referer" => "http://www.ruby-lang.org/").read
       html_doc = Nokogiri::HTML(html_file)
 
