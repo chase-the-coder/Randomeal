@@ -14,7 +14,7 @@ class CreateRestaurantsJob < ApplicationJob
     end
 
     rests.each do |key, _value|
-      Restaurant.create!(
+      Restaurant.find_or_create_by(
         name: rests[key]["name"],
         address: rests[key]["address"],
         rating: rests[key]["rating"],

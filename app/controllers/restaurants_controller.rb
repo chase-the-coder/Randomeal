@@ -59,12 +59,12 @@ class RestaurantsController < ApplicationController
     if session[:distance].present?
       if @restaurants.any?
         @restaurants = @restaurants.reject do |rest|
-          rest.latitude.nil? || rest.distance_to([session[:lat], session[:long]]) > session[:distance].to_i
+          rest.distance_to([session[:lat], session[:long]]) > session[:distance].to_i unless rest.latitude.nil?
         end
       end
     end
-
     @restaurant = @restaurants.sample
+    raise
   end
 
 
