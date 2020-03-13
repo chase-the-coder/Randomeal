@@ -1,15 +1,18 @@
 <h2>Loading best restaurants for you!</h2>
-<input type="number" value="0" class="hidden" id="restaurantNumber">
 
 <script>
   const refresh = () => {
-    //verificar se @restaurants.size != 0
-    if (document.getElementById("restaurantNumber").value != 0) {
-    // se sim
-      // redirecionar para index
-      window.location = <%= restaurants_path %>;
-      // window.location = "http://www.xyz.com";
-    }
+    Rails.ajax({
+      url: "<%= verify_path %>",
+      type: "GET",
+      success: function(data) {
+        if (data.found == true) {
+          window.location = "<%= restaurants_path %>";
+        } else if (data.should_stop == true) {
+          window.location = "<%= root_path %>";
+        }
+      }
+    });
   };
 
   setInterval(refresh, 1000);

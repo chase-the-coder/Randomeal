@@ -1,0 +1,5 @@
+meta_product_name: "Randomeal"
+meta_title: "Randomeal | An app for indecisive eaters"
+meta_description: "Randomeal will randomly generate the perfect restaurant that not only meets your party’s needs, but gets you out into your city so that you can explore new restaurants in new neighborhoods for brand new experiences."
+meta_image: "randomeal-meta.png" # should exist in `app/assets/images/`
+twitter_account: "@pUmcaraAi"   # required for Twitter Cards

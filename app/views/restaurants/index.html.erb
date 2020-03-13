@@ -3,10 +3,13 @@
     <div class="card-body">
       <div class="card-btns">
         <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
-        <%= link_to "Try again", restaurants_path(restaurants: {price: params[:restaurants][:price], categories: params[:restaurants][:categories]}), class: "btn mt-0", id: "randomize-btn" %>
+        <%= link_to "Randomize", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn mt-0", id: "randomize-btn" %>
       </div>
 
       <h5 class="card-header"><%= @restaurant.name %></h5>
+      <% if @restaurant.image.present? %>
+        <%= image_tag @restaurant.image, crop: :fill, class: "restaurant-photo" %>
+      <% end %>
       <p class="card-text"><%= @restaurant.category.name %></p>
         <% price = "" %>
         <% @restaurant.price_range.to_i.times do %>
@@ -14,7 +17,7 @@
         <% end %>
       <p class="card-text border-bottom"><strong><%= price %></strong></p>
     </div>
-      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to" %>
+      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to", class: "btn custom-btn-primary" %>
     <div align="center">
       <div
         id="map"

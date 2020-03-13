@@ -2,6 +2,7 @@
   border-radius: 15px;
   border: none;
   box-shadow: 1px 2px 2px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
 }
 
 .card-body {
@@ -27,8 +28,9 @@
 .card-header {
   margin-top: 15px;
   padding-bottom: 15px;
-  border-bottom: solid 1px;
-  border-color: #DEE2E6;
+  border-bottom: none;
+  // border-color: #DEE2E6;
+  background-color: transparent;
 }
 
 .card-text {
@@ -42,6 +44,12 @@
 #go_to {
   text-decoration: none;
   color: $randomeal-primary;
+  width: 130px;
+  margin: 0 auto;
+}
+
+#go_to:hover {
+  color: white;
 }
 
 .profile-header {
@@ -51,4 +59,10 @@
   border-top: solid 1px;
   border-color: #DEE2E6;
   margin-bottom: 0;
+}
+
+.restaurant-photo {
+  width: 100%;
+  height: 200px;
+  border-radius: 6px;
 }
