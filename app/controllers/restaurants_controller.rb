@@ -1,9 +1,13 @@
 require 'open-uri'
 require 'nokogiri'
+require 'sidekiq'
+require 'sidekiq-status'
 
 class RestaurantsController < ApplicationController
+
   skip_before_action :authenticate_user!
   before_action :filtering_restaurants, only: [:index, :verify]
+
   def show
     @restaurant = Restaurant.find(params[:id])
   end
@@ -17,19 +21,23 @@ class RestaurantsController < ApplicationController
   end
 
   def load
-    location = [params[:restaurants][:user_lat].to_f, params[:restaurants][:user_long].to_f]
+    geocoder_obj = Geocoder.search(params[:restaurants][:user_address]).first.data
+    location = [geocoder_obj["lat"].to_f, geocoder_obj["lon"].to_f]
     session[:category] = params[:restaurants][:categories]
     session[:price] = params[:restaurants][:price]
-    session[:lat] = params[:restaurants][:user_lat]
-    session[:long] = params[:restaurants][:user_long]
+    session[:lat] = geocoder_obj["lat"].to_f
+    session[:long] = geocoder_obj["lon"].to_f
     session[:distance] = params[:restaurants][:distance]
     current_session = session
-    CreateRestaurantsJob.perform_later(location)
+    session[:sidekiq_job_id] = CreateRestaurantsJob.perform_later(location)
   end
 
   def verify
+    should_stop = Sidekiq::Status::complete? session[:sidekiq_job_id]["job_id"]
+
     render json: {
-      found: @restaurant.present?
+      found: @restaurant.present?,
+      should_stop: should_stop
     }
   end
 
@@ -43,21 +51,19 @@ class RestaurantsController < ApplicationController
       prices = [1,2,3,4] - session[:price].split(",").map { |price| price.to_i }
       @restaurants -= Restaurant.where(price_range: prices)
     end
-    if session[:categorys].present?
-      categories = session[:categories].split(",")
+    if session[:category].present?
+      categories = session[:category].split(",")
       categories_instances = Category.where(name: categories)
       @restaurants -= Restaurant.where(category_id: categories_instances)
-      # puts "========================================="
-      # puts @restaurants
-      # puts "========================================="
     end
     if session[:distance].present?
       if @restaurants.any?
-        @restaurants.reject do |rest|
-          rest.distance_to([session[:lat], session[:long]]) <= session[:distance].to_i
+        @restaurants = @restaurants.reject do |rest|
+          rest.latitude.nil? || rest.distance_to([session[:lat], session[:long]]) > session[:distance].to_i
         end
       end
     end
+
     @restaurant = @restaurants.sample
   end
 

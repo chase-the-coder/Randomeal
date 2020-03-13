@@ -2,10 +2,7 @@
   <div class="card-body">
     <p class="feature-header">Your location:</p>
 
-    <%= form_tag root_path, method: "GET" do |f| %>
-      <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
-      <%= submit_tag "submit",class: "hidden" %>
-    <% end %>
+    <%= text_field_tag :address, "", id: "address-input", placeholder: "Enter your address" %>
 
     <%= form_with url: root_path, method: "GET", remote: true, id: "hidden_form" do |f| %>
       <%= text_field_tag :latitude, nil, id: "lat", class: "hidden" %>
@@ -48,40 +45,45 @@
           <button type="button" class="category category-grow" data-toggle="button" aria-pressed="false" autocomplete="off" style="background-image: url(https://img.manoramaonline.com/content/dam/mm/en/food/foodie/images/2020/1/26/lasagna.jpg)">
             Italian
           </button type="button">
-      </div>
+        </div>
       </div>
     </div>
 
-<p class="feature-header">Price Range:</p>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <p id="price1" class="price-range py-2 px-3">$</p>
-  <p id="price2" class="price-range py-2 px-3">$$</p>
-  <p id="price3" class="price-range py-2 px-3">$$$</p>
-  <p id="price4" class="price-range py-2 px-3">$$$$</p>
-</div>
+    <p class="feature-header">Price Range:</p>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <p id="price1" class="price-range py-2 px-3">$</p>
+      <p id="price2" class="price-range py-2 px-3">$$</p>
+      <p id="price3" class="price-range py-2 px-3">$$$</p>
+      <p id="price4" class="price-range py-2 px-3">$$$$</p>
+    </div>
 
-<%= simple_form_for(:restaurants, method: :GET, url: load_path) do |f| %>
-  <%= f.input :categories, as: :string, input_html: {class: "hidden", id: "category-hidden"}, label: false %>
-  <%= f.input :price, as: :string, input_html: {class: "hidden", id: "price-hidden"}, label: false %>
-  <%= f.input :user_lat, as: :string, input_html: {class: "hidden", id: "user_lat"}, label: false %>
-  <%= f.input :user_long, as: :string, input_html: {class: "hidden", id: "user_long"}, label: false %>
-  <%= f.input :distance, as: :string, input_html: {class: "hidden", id: "distance", value: 15}, label: false %>
-  <%= f.button :submit, "Randomize", class: "btn btn-lg mt-3", id: "randomize-btn" %>
-<% end %>
+    <%= simple_form_for(:restaurants, method: :GET, url: load_path) do |f| %>
+      <%= f.input :categories, as: :string, input_html: {class: "hidden", id: "category-hidden"}, label: false %>
+      <%= f.input :price, as: :string, input_html: {class: "hidden", id: "price-hidden"}, label: false %>
+      <%= f.input :user_address, as: :string, input_html: {class: "hidden", id: "user_address"}, label: false, value: @user_address ? @user_address : "" %>
+      <%= f.input :distance, as: :string, input_html: {class: "hidden", id: "distance", value: 15}, label: false %>
+      <%= f.button :submit, "Randomize", class: "btn btn-lg mt-3", id: "randomize-btn" %>
+    <% end %>
 
-    <script>
-      function success(position) {
-        const hiddenForm = document.getElementById("hidden_form");
-        document.getElementById("lat").value = position.coords.latitude;
-        document.getElementById("user_lat").value = position.coords.latitude;
-        document.getElementById("long").value = position.coords.longitude;
-        document.getElementById("user_long").value = position.coords.longitude;
-        Rails.fire(hiddenForm, 'submit');
-      }
-
-      <% unless params[:latitude].present? %>
-        navigator.geolocation.getCurrentPosition(success);
-      <% end %>
-    </script>
   </div>
 </div>
+
+<script>
+  function success(position) {
+    const hiddenForm = document.getElementById("hidden_form");
+    document.getElementById("lat").value = position.coords.latitude;
+    document.getElementById("long").value = position.coords.longitude;
+    Rails.fire(hiddenForm, 'submit');
+  }
+
+  <% unless params[:latitude].present? %>
+    navigator.geolocation.getCurrentPosition(success);
+  <% end %>
+
+  document.getElementById("address-input").addEventListener("blur", (e) => {
+    if (e.currentTarget.value) {
+      document.getElementById("user_address").value = e.currentTarget.value;
+    }
+  })
+</script>
+

@@ -8,6 +8,8 @@
       success: function(data) {
         if (data.found == true) {
           window.location = "<%= restaurants_path %>";
+        } else if (data.should_stop == true) {
+          window.location = "<%= root_path %>";
         }
       }
     });
