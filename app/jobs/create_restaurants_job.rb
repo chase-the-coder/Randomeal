@@ -12,7 +12,6 @@ class CreateRestaurantsJob < ApplicationJob
 
     10000.times do
 
-
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
 
       html_file = open(url, "User-Agent" => "Ruby/2.6.5",
