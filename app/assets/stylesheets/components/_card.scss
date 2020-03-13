@@ -29,6 +29,7 @@
   padding-bottom: 15px;
   border-bottom: solid 1px;
   border-color: #DEE2E6;
+  background-color: transparent;
 }
 
 .card-text {
@@ -42,6 +43,12 @@
 #go_to {
   text-decoration: none;
   color: $randomeal-primary;
+  width: 130px;
+  margin: 0 auto;
+}
+
+#go_to:hover {
+  color: white;
 }
 
 .profile-header {
