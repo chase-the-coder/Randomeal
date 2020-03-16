@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 location = "rua bento lisboa"
-start = 0
+start = 1
 
 url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=329%203rd%20Ave%2C%20New%20York%2C%20NY%2C%20United%20States"
 
