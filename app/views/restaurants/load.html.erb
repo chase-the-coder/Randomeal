@@ -6,7 +6,13 @@
 
 
 <script>
+  const now = new Date()
+
   const refresh = () => {
+    if (new Date() - now > 25000) {
+      console.log(new Date() - now)
+      window.location = "<%= root_path %>"
+    }
     Rails.ajax({
       url: "<%= verify_path %>",
       type: "GET",
