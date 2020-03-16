@@ -40,3 +40,5 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'sidekiq-status'
+# heroku api
+gem 'platform-api'

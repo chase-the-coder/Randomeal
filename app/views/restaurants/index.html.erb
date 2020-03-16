@@ -5,19 +5,6 @@
         <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
         <%= link_to "Randomize", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn mt-0", id: "randomize-btn" %>
       </div>
-
-      <h5 class="card-header"><%= @restaurant.name %></h5>
-      <% if @restaurant.image.present? %>
-        <%= image_tag @restaurant.image, crop: :fill, class: "restaurant-photo" %>
-      <% end %>
-      <p class="card-text"><%= @restaurant.category.name %></p>
-        <% price = "" %>
-        <% @restaurant.price_range.to_i.times do %>
-          <% price += "$ " %>
-        <% end %>
-      <p class="card-text border-bottom"><strong><%= price %></strong></p>
-    </div>
-      <%= link_to "Go to Maps", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to", class: "btn custom-btn-primary" %>
     <div align="center">
       <div
         id="map"
@@ -26,6 +13,17 @@
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
+
+      <h5 class="card-header"><%= @restaurant.name %></h5>
+
+      <p class="card-text"><%= @restaurant.category.name %></p>
+        <% price = "" %>
+        <% @restaurant.price_range.to_i.times do %>
+          <% price += "$ " %>
+        <% end %>
+      <p class="card-text border-bottom"><strong><%= price %></strong></p>
+    </div>
+      <%= link_to "Let's go!", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to", class: "btn custom-btn-primary mt-2" %>
     </div>
   </div>
 <% else %>
