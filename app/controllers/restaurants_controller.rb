@@ -52,6 +52,36 @@ class RestaurantsController < ApplicationController
     end
     if session[:category].present?
       categories = session[:category].split(",")
+      if categories.include?("Bar")
+        categories << "Bar Food"
+        categories << "Bars"
+      end
+      if categories.include?("Cafe")
+        categories << "Café"
+        categories << "Cafe Food"
+        categories << "Coffee Bar"
+      end
+      if categories.include?("Fast Food")
+        categories << "Snack Bar"
+      end
+      if categories.include?("Japanese")
+        categories << "Sushi"
+        categories << "Lamen Shop"
+      end
+      if categories.include?("Burger")
+        categories << "Burgers"
+      end
+      if categories.include?("Steak")
+        categories << "Steakhouse"
+        categories << "Grill"
+        categories << "Churrascaria"
+      end
+      if categories.include?("Seafood")
+        categories << "Sea Food"
+      end
+      if categories.include?("Vegetarian")
+        categories << "Vegan"
+      end
       categories_instances = Category.where(name: categories)
       @restaurants -= Restaurant.where(category_id: categories_instances)
     end
