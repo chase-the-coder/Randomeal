@@ -52,6 +52,12 @@ class RestaurantsController < ApplicationController
     end
     if session[:category].present?
       categories = session[:category].split(",")
+      # if categories.include?("Bar")
+      #   categories << "Bar Food"
+      #   categories << "Bars"
+      # elsif categories.include?("Burger")
+
+      # end
       categories_instances = Category.where(name: categories)
       @restaurants -= Restaurant.where(category_id: categories_instances)
     end
@@ -65,5 +71,12 @@ class RestaurantsController < ApplicationController
     @restaurant = @restaurants.sample
   end
 
-
+  def restart_web_dynos
+    if params[:key] == ENV['RESTART_WEBHOOK_KEY']
+      RestartAppJob.perform_later
+      render text: 'Restart triggered'
+    else
+      render text: 'You are not allowed to restart the dynos'
+    end
+  end
 end
