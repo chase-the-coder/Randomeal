@@ -13,9 +13,9 @@ class CreateRestaurantsJob < ApplicationJob
     100.times do
 
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
-
+      email = "#{rand(99999..999999999999)}@gmail.com"
       html_file = open(url, "User-Agent" => "Ruby/2.6.5",
-          "From" => "#{rand(99999..999999999999)}@gmail.com",
+          "From" => email,
           "Referer" => "http://www.ruby-lang.org/").read
       html_doc = Nokogiri::HTML(html_file)
 

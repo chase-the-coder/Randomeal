@@ -10,7 +10,8 @@ class PagesController < ApplicationController
     session[:sidekiq_job_id] = nil
 
     if params[:latitude] && params[:longitude]
-      @user_address = Geocoder.search([params[:latitude], params[:longitude]]).first.data["address"]["road"]
+      geocoder = Geocoder.search([params[:latitude].to_f, params[:longitude].to_f])
+      @user_address ||= "#{geocoder.first.data["address"]["house_number"]}, #{geocoder.first.data["address"]["address27"]}"
     end
   end
 
