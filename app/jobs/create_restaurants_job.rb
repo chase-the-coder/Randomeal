@@ -10,7 +10,7 @@ class CreateRestaurantsJob < ApplicationJob
     counter = 0
     hash = {}
 
-    10000.times do
+    100.times do
 
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
 
