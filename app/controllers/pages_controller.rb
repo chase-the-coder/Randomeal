@@ -11,7 +11,7 @@ class PagesController < ApplicationController
 
     if params[:latitude] && params[:longitude]
       geocoder = Geocoder.search([params[:latitude].to_f, params[:longitude].to_f])
-      @user_address ||= "#{geocoder.first.data["address"]["house_number"]}, #{geocoder.first.data["address"]["address27"]}"
+      @user_address = "#{geocoder.first.data["address"]["house_number"]}, #{geocoder.first.data["address"]["address27"]}"
     end
   end
 
