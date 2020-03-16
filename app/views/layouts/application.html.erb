@@ -29,7 +29,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-  </head>
+    <!-- <link rel="manifest" href="/manifest.json" /> -->
+    <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"></head>
+
   <body>
     <%= render 'shared/navbar' %>
 
