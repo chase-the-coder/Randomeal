@@ -60,6 +60,12 @@ class RestaurantsController < ApplicationController
         categories << "Café"
         categories << "Cafe Food"
         categories << "Coffee Bar"
+        categories << "Coffee Shop"
+        categories << "Caffe"
+        categories << "Caffé"
+        categories << "Cafe Bar"
+        categories << "Café Bar"
+        categories << "Cafés"
       end
       if categories.include?("Fast Food")
         categories << "Snack Bar"
