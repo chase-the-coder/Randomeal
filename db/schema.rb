@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(version: 2020_03_13_165715) do
     t.index ["category_id"], name: "index_restaurants_on_category_id"
   end
 
+  create_table "scrapeds", force: :cascade do |t|
+    t.string "city"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "scrapers", force: :cascade do |t|
     t.string "city"
     t.string "country"
