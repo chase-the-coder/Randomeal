@@ -28,15 +28,12 @@ class RestaurantsController < ApplicationController
     session[:lat] = geocoder_obj["lat"].to_f
     session[:long] = geocoder_obj["lon"].to_f
     session[:distance] = params[:restaurants][:distance]
-    session[:sidekiq_job_id] = CreateRestaurantsJob.perform_later(location)
+    # session[:sidekiq_job_id] = CreateRestaurantsJob.perform_later(location)
   end
 
   def verify
-    should_stop = Sidekiq::Status::complete? session[:sidekiq_job_id]["job_id"]
-
     render json: {
       found: @restaurant.present?,
-      should_stop: should_stop
     }
   end
 
