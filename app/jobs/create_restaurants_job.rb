@@ -53,22 +53,22 @@ class CreateRestaurantsJob < ApplicationJob
         counter += 1
       end
       start += 30
-    hash.each do |key, _value|
-      hash[key]["category"].split(",").each do |category|
-        Category.find_or_create_by(name: category)
+      hash.each do |key, _value|
+        hash[key]["category"].split(",").each do |category|
+          Category.find_or_create_by(name: category)
+        end
       end
-    end
 
-    hash.each do |key, _value|
-      Restaurant.find_or_create_by(
-        name: hash[key]["name"],
-        address: hash[key]["address"],
-        rating: hash[key]["rating"],
-        price_range: hash[key]["price"],
-        image: hash[key]["photo"],
-        category_id: Category.find_by(name: hash[key]["category"].split(",")[0]).id
-      )
-    end
+      hash.each do |key, _value|
+        Restaurant.find_or_create_by(
+          name: hash[key]["name"],
+          address: hash[key]["address"],
+          rating: hash[key]["rating"],
+          price_range: hash[key]["price"],
+          image: hash[key]["photo"],
+          category_id: Category.find_by(name: hash[key]["category"].split(",")[0]).id
+        )
+      end
     end
   end
 end
