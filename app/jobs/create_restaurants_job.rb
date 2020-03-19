@@ -10,7 +10,7 @@ class CreateRestaurantsJob < ApplicationJob
     counter = 0
     hash = {}
 
-    100.times do
+    5.times do
 
       url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
       email = "#{rand(99999..999999999999)}@gmail.com"
