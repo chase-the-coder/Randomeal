@@ -95,3 +95,13 @@
     // box-shadow: 0 0 0 0 $randomeal-secondary;
   }
 }
+
+@media (min-width: 420px) {
+  .navbar-randomeal {
+    width: inherit;
+    // left: 50%;
+    // -webkit-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
+  }
+
+}

@@ -39,15 +39,18 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <div class="phone">
 
-    <div class= "main-container text-center">
-      <%= render 'shared/flashes' %>
-      <%= yield %>
+      <%= render 'shared/navbar' %>
+
+      <div class= "main-container text-center">
+        <%= render 'shared/flashes' %>
+        <%= yield %>
+      </div>
+
     </div>
 
-
-    <%= javascript_pack_tag 'application' %>
+      <%= javascript_pack_tag 'application' %>
 
   </body>
 </html>
