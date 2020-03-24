@@ -14,7 +14,7 @@ class PagesController < ApplicationController
       p "====================================="
       p geocoder
       if geocoder["house_number"].present?
-        @user_address = "#{geocoder["house_number"]}, #{geocoder["road"]}"
+        @user_address = "#{geocoder["house_number"]}, #{geocoder["address27"]}"
       else
         @user_address = geocoder["road"]
       end

@@ -89,10 +89,8 @@ class RestaurantsController < ApplicationController
       @restaurants -= Restaurant.where(category_id: categories_instances)
     end
     if session[:distance].present?
-      if @restaurants.any?
-        @restaurants = @restaurants.reject do |rest|
-          rest.latitude.nil? || rest.distance_to([session[:lat], session[:long]]) > session[:distance].to_i
-        end
+      @restaurants.reject do |rest|
+        rest.latitude.nil? || rest.distance_to([session[:lat], session[:long]]) > session[:distance].to_i
       end
     end
     @restaurant = @restaurants.sample

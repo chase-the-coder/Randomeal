@@ -3,6 +3,10 @@
     <div class="card-body">
       <div class="card-btns">
         <%= link_to "<i class='fas fa-arrow-left text-left randomeal-secondary'></i>".html_safe, root_path%>
+        <% if current_user %>
+
+          <p class="mt-3">S2</p>
+        <% end %>
         <%= link_to "Randomize", restaurants_path(restaurants: {price: session[:price], categories: session[:categories], distance: session[:distance]}), class: "btn mt-0", id: "randomize-btn" %>
       </div>
     <div align="center">
