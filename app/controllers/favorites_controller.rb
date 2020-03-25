@@ -9,7 +9,6 @@ class FavoritesController < ApplicationController
   def destroy
     favorite = Restaurant.find(params[:id])
     favorite.destroy
-    redirect_to user_path(current_user)
   end
 
   private
