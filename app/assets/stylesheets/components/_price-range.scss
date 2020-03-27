@@ -9,6 +9,10 @@
   transition: all .2s ease-in-out;
 }
 
+.price-range:hover {
+  cursor: pointer;
+}
+
 .selected {
   transition: all .2s ease-in-out;
   color: white;
