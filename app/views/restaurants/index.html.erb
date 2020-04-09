@@ -25,10 +25,11 @@
     </div>
     <div class="d-flex">
       <%= link_to "Let's go!", "https://www.google.com/maps/place/#{@restaurant.address}", target: "_blank", id: "go_to", class: "btn custom-btn-primary mt-2" %>
-      <% if current_user.favorites %>
+      <% if current_user %>
         <%= link_to "S2", user_favorites_path(@restaurant) %>
       <% else %>
-        <%= link_to user_favorite_path(@restaurant) %>
+        <%= link_to "S2", user_favorite_path(@restaurant),
+            method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
     </div>

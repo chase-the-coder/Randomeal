@@ -7,7 +7,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Restaurant.find(params[:id])
+    favorite = current_user.favorites.where(restaurant: 1)
     favorite.destroy
   end
 
