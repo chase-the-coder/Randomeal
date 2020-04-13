@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     favorite = Favorite.new(params_favorite)
     favorite.user = current_user
     favorite.restaurant = Restaurant.find(params[:id])
+    redirect_to root_path
   end
 
   def destroy

@@ -18,6 +18,7 @@ class RestaurantsController < ApplicationController
       lng: @restaurant.longitude,
       infoWindow: render_to_string(partial: "info_window", locals: { restaurant: @restaurant })
     }
+    @favorite = Favorite.new
   end
 
   def load

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, except: %i[index new create] do
-    resources :favorites, only: %i[create destroy]
-  end
+  resources :users, except: %i[index new create]
+  resources :favorites, only: %i[create destroy]
   resources :restaurants, only: %i[show index]
   root to: 'pages#home'
   get '/about', to: 'pages#about'
