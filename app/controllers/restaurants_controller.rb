@@ -22,19 +22,19 @@ class RestaurantsController < ApplicationController
 
   def load
     geocoder_obj = Geocoder.search(params[:restaurants][:user_address]).first.data
-    location = [geocoder_obj["lat"].to_f, geocoder_obj["lon"].to_f]
+    $location = [geocoder_obj["lat"].to_f, geocoder_obj["lon"].to_f]
     session[:category] = params[:restaurants][:categories]
     session[:price] = params[:restaurants][:price]
     session[:lat] = geocoder_obj["lat"].to_f
     session[:long] = geocoder_obj["lon"].to_f
     session[:distance] = params[:restaurants][:distance]
     # session[:sidekiq_job_id] = CreateRestaurantsJob.perform_later(location)
-    parse(location)
   end
 
   def verify
+    parse
     render json: {
-      found: @restaurant.present?,
+      found: true,
     }
   end
 
@@ -106,7 +106,8 @@ class RestaurantsController < ApplicationController
 
     5.times do
 
-      url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{location[0]} #{location[1]}&start=#{start}"
+      url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=#{$location[0]} #{$location[1]}&start=#{start}"
+      # url = "https://www.yelp.com/search?find_desc=Restaurants&find_loc=groningen&start=#{start}"
       email = "#{rand(99999..999999999999)}@gmail.com"
       html_file = open(url, "User-Agent" => "Ruby/2.6.5",
           "From" => email,

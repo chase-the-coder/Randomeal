@@ -7,13 +7,25 @@
 
 
 <script>
-  const now = new Date()
 
-  const refresh = () => {
-    if (new Date() - now > 25000) {
-      window.location = "<%= root_path %>"
-    }
-    Rails.ajax({
+  // const now = new Date()
+
+  // const refresh = () => {
+  //   if (new Date() - now > 25000) {
+  //     window.location = "<%= root_path %>"
+  //   }
+  //   Rails.ajax({
+  //     url: "<%= verify_path %>",
+  //     type: "GET",
+  //     success: function(data) {
+  //       if (data.found == true) {
+  //         window.location = "<%= restaurants_path %>";
+  //       }
+  //     }
+  //   });
+  // };
+
+  Rails.ajax({
       url: "<%= verify_path %>",
       type: "GET",
       success: function(data) {
@@ -22,7 +34,6 @@
         }
       }
     });
-  };
 
-  setInterval(refresh, 1000);
+  // setInterval(refresh, 1000);
 </script>
